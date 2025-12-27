@@ -1,0 +1,84 @@
+# Jogo de Par ou Ímpar
+# Este programa permite que o usuário jogue par ou ímpar contra o computador
+
+# Importa o módulo random para gerar números aleatórios
+import random
+
+# Função principal do jogo
+def jogar_par_ou_impar():
+    """
+    Função que gerencia todo o fluxo do jogo par ou ímpar
+    """
+   
+    # Exibe mensagem de boas-vindas
+    print("=" * 40)
+    print("Bem-vindo ao jogo de Par ou Ímpar!")
+    print("=" * 40)
+   
+    # Loop principal do jogo - continua enquanto o usuário quiser jogar
+    while True:
+        # Solicita ao usuário escolher entre PAR ou ÍMPAR
+        escolha_usuario = input("\nEscolha PAR ou ÍMPAR: ").strip().upper()
+       
+        # Verifica se a escolha do usuário é válida (PAR ou ÍMPAR)
+        if escolha_usuario not in ["PAR", "ÍMPAR", "IMPAR"]:
+            # Se a escolha for inválida, exibe mensagem de erro e reinicia o loop
+            print("Escolha inválida! Digite PAR ou ÍMPAR.")
+            continue
+       
+        # Normaliza a escolha (converte "IMPAR" para "ÍMPAR" se necessário)
+        if escolha_usuario == "IMPAR":
+            escolha_usuario = "ÍMPAR"
+       
+        # Solicita ao usuário escolher um número de 0 a 10
+        try:
+            # Tenta converter a entrada do usuário para um número inteiro
+            numero_usuario = int(input("Escolha um número de 0 a 10: "))
+           
+            # Verifica se o número está no intervalo válido (0 a 10)
+            if numero_usuario < 0 or numero_usuario > 10:
+                # Se estiver fora do intervalo, exibe mensagem de erro e reinicia o loop
+                print("Número inválido! Escolha um número entre 0 e 10.")
+                continue
+               
+        except ValueError:
+            # Se o usuário digitar algo que não seja um número, exibe mensagem de erro
+            print("Por favor, digite um número válido!")
+            continue
+       
+        # Gera um número aleatório para o computador (de 0 a 10)
+        numero_computador = random.randint(0, 10)
+       
+        # Calcula a soma dos números do usuário e do computador
+        soma = numero_usuario + numero_computador
+       
+        # Determina se a soma é par ou ímpar usando o operador módulo (%)
+        # Se o resto da divisão por 2 for 0, o número é par; caso contrário, é ímpar
+        resultado = "PAR" if soma % 2 == 0 else "ÍMPAR"
+       
+        # Exibe os resultados do jogo
+        print(f"\nVocê escolheu: {numero_usuario}")
+        print(f"Computador escolheu: {numero_computador}")
+        print(f"Soma: {soma} ({resultado})")
+       
+        # Verifica se o resultado corresponde à escolha do usuário
+        if resultado == escolha_usuario:
+            # Se o resultado corresponder à escolha do usuário, ele ganha
+            print("🎉 Você ganhou!")
+        else:
+            # Se não corresponder, o computador ganha
+            print("😢 Você perdeu!")
+       
+        # Pergunta ao usuário se deseja jogar novamente
+        jogar_novamente = input("\nDeseja jogar novamente? (s/n): ").strip().lower()
+       
+        # Verifica se o usuário quer continuar jogando
+        if jogar_novamente != "s":
+            # Se a resposta não for "s", encerra o loop e finaliza o jogo
+            print("\nObrigado por jogar! Até logo!")
+            break
+
+# Verifica se este arquivo está sendo executado diretamente (não importado)
+if __name__ == "__main__":
+    # Se estiver sendo executado diretamente, chama a função principal do jogo
+    jogar_par_ou_impar()
