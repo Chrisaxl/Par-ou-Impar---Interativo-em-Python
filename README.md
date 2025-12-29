@@ -1,5 +1,3 @@
-#🎮 Jogo Par ou Ímpar
-
 Este é um projeto simples feito em Python, criado para praticar lógica de programação, interação com o usuário e uso de números aleatórios. O jogador escolhe um número e decide se aposta em par ou ímpar. O programa então gera um número, soma os valores e informa o resultado da rodada. 🧠⚡
 
 🧰 Tecnologias utilizadas
